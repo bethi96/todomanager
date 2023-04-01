@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>To-do Manager List</title>
+<link href="/css/styles.css" type="text/css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+crossorigin="anonymous">
+</head>
+<script>
+	function onButtonClick(){
+		  document.getElementById('textInput').className="show";
+		}
+</script>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#"> Todo Manager</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/homepage}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+	<br>
+		<div class="row">
+			<h1> My Todos - PlanAndDo </h1>
+		</div>
+		<br>
+		<div th:if="${param.success}"><div class="alert alert-danger">
+			You have deleted the Todo !!
+			</div></div>
+		
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href = "@{/todos/new}" class="btn btn-dark btn-lg">Create new Todo</a>
+				
+			</div><br>
+		</div>
+		<br>
+		
+				<!-- <div th:if="${param.success}"><div class="alert alert-info">
+			You have created a new Todo !!
+			</div>
+			</div> -->
+			<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By names.." title="Type in a name" style="width: 100%;padding: 12px 20px 12px 40px";> -->
+			<form th:action="@{/todoname}" th:object = "${todoname}" method="POST">
+			<div class="form-group">
+					<label style="font-weight: bold;">Name</label> <br>
+					<input type="text" name="Name" th:field = "*{name}" class="form-control" placeholder="Enter your name here to see your todos!!" style="width: 400px;" required="required"/>
+			</div>
+			<br>
+			<input type="submit" class="btn btn-dark btn-lg" name="answer" value="Get My Todos"/>
+			<br>
+			<br></form>
+			<div class="container" >
+			<div class="card bg-dark text-white">
+    <div class="card-body"><h4>Todo list manager is a simple but effective tool for managing tasks.Below are few features of this app..</h4>
+<br>
+<p>1) Users can create new tasks, update existing tasks, and delete completed or inactive tasks.</p>
+<p>2) The register and login features allow users to securely access their task list and ensure their privacy.</p>
+
+<p>3) With this todo list manager, users can easily keep track of their tasks and prioritize their work.</p>
+<p>4) While the application does not include advanced features like task sharing or notifications, it provides a straightforward way to manage tasks and stay organized.</p>
+
+<p>Overall, The todo list manager is a practical tool for individuals or small teams who want to manage their tasks without getting bogged down by unnecessary features.</p></div>
+  </div>
+			</div>
+<!-- 			<table class="table table-dark table-striped-columns table-bordered">
+				<thead class="table-dark">
+					<tr>
+					<th> Name</th>
+					<th> Todoitem</th>
+					<th> Priority</th>
+					<th> Description</th>
+					<th> Comments</th>
+					<th> DueDate</th>
+					<th> DueTime</th>
+					<th style="text-align: center;">Actions</th>
+					</tr>
+				
+				</thead>
+				<tbody>
+				<tr th:each = "todo: ${todos}">
+					<td th:text = "${todo.name}"></td>
+					<td th:text = "${todo.todoitem}"></td>
+					<td th:text = "${todo.priority}"></td>
+					<td th:text = "${todo.description}"></td>
+					<td th:text = "${todo.comments}"></td>	
+					<td th:text = "${todo.dueDate}"></td>	
+					<td th:text = "${todo.dueTime}"></td>
+					<td align="center">
+						<a th:href = "@{/todos/edit/{id}(id=${todo.id})}"
+						class="btn btn-primary">Update</a>
+						
+						<a th:href = "@{/todos/{id}(id=${todo.id})}"
+						class="btn btn-danger">Delete</a>
+					</td>			
+				</tr>
+				</tbody>
+ 
+			</table> -->
+	</div>
+	
+</body>
+		<footer class="bg py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-right">Copyright &copy; 2023 - Tharun Kumar Bethi</div></div>
+        </footer>
+</html>

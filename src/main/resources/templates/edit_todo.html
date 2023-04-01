@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>To-do Manager List</title>
+<link href="/css/styles.css" type="text/css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/homepage}"> Todo Manager</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <div class="navbar-nav">
+      
+			<a class="nav-link" th:href="@{/homepage}">Logout</a>
+      
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<div class = "container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
+		<div th:if="${param.success}"><div class="alert alert-info">
+			You have updated your Todo !!
+			</div>
+			</div>
+				<h1 class="text-black font-weight-bold">UPDATE YOUR TO-DO HERE !!</h1>
+				
+				<br>
+				<div class="card-body">
+					<form th:action="@{/todocreated/{id} (id=${todo.id})}" th:object = "${todo}" method="POST">
+						<div class="form-group">
+							<label style="font-weight: bold;">Name</label> 
+							<input type="text" name="Name" th:field = "*{name}" class="form-control" placeholder="Enter what to do?" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">Todoitem</label> 
+							<input type="text" name="Todoitem" th:field = "*{todoitem}" class="form-control" placeholder="Enter what to do?" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">Priority</label> 
+							<input type="text" name="Priority" th:field = "*{priority}" class="form-control" placeholder="Enter priority(high/medium/low)" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">Description</label>
+							<input type="text" name="Description" th:field = "*{description}" class="form-control" placeholder="Enter description" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">Comments</label>
+							<input type="text" name="Comments" th:field = "*{comments}" class="form-control" placeholder="Enter any comments" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">DueDate</label>
+							<input type="date" name="DueDate" th:field = "*{dueDate}" class="form-control" placeholder="Enter Date deadline" required="required"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label style="font-weight: bold;">DueTime</label>
+							<input type="time" name="DueTime" th:field = "*{dueTime}" class="form-control" placeholder="Enter Time deadline" required="required"/>
+						</div>
+						<br>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-dark">Submit</button>
+						</div>
+					</form>
+				</div>			
+			</div>
+		</div>
+		
+	</div>
+		<footer class="bg py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-right">Copyright &copy; 2023 - Tharun Kumar Bethi</div></div>
+        </footer>
+</body>
+</html>
